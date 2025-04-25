@@ -1,9 +1,11 @@
+/* === BASE STYLES === */
 body {
   font-family: 'Poppins', sans-serif;
   margin: 0;
   background: #f9f9f9;
   color: #333;
 }
+
 header {
   background: white;
   padding: 20px;
@@ -12,58 +14,102 @@ header {
   align-items: center;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
+
 .logo {
   font-weight: bold;
   font-size: 1.4rem;
 }
+
 header input[type="text"] {
   width: 300px;
   padding: 8px;
   border-radius: 20px;
   border: 1px solid #ccc;
 }
+
 nav a {
   margin-left: 15px;
   text-decoration: none;
   color: #0077cc;
 }
 
+/* === SECTIONS === */
 section {
-  padding: 40px 20px;
+  padding: 0px 20px;
 }
 
-.grid {
+/* === FILTER CHECKBOXES === */
+.filters-grid {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 10px;
+  padding: 10px 20px;
 }
 
+.filters-grid label {
+  cursor: pointer;
+  background-color: #eee;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+}
+
+.filters-grid input[type="checkbox"] {
+  margin-right: 6px;
+}
+
+/* === CAROUSEL STYLING === */
+.carousel {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  gap: 16px;
+  padding: 10px 20px;
+  scrollbar-width: none;
+}
+
+.carousel::-webkit-scrollbar {
+  display: none;
+}
+
+/* === GAME CARD === */
 .card {
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  overflow: hidden;
-  width: 250px;
+  flex: 0 0 auto;
+  min-width: 220px;
+  max-width: 220px;
+  background: #fff;
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  text-align: center;
+  scroll-snap-align: start;
   transition: transform 0.2s ease;
 }
+
 .card:hover {
   transform: scale(1.03);
 }
+
 .card img {
   width: 100%;
-  height: 150px;
+  height: 140px;
   object-fit: cover;
-}
-.card h3 {
-  margin: 10px;
-  font-size: 1.1rem;
-}
-.card p {
-  margin: 0 10px 15px;
-  font-size: 0.9rem;
-  color: #666;
+  border-radius: 6px;
 }
 
+.card h3 {
+  margin: 10px 0 5px;
+  font-size: 1.1rem;
+}
+
+.card p {
+  font-size: 0.9rem;
+  color: #666;
+  margin: 0 0 10px;
+}
+
+/* === FOOTER === */
 footer {
   text-align: center;
   padding: 20px;
@@ -71,11 +117,14 @@ footer {
   margin-top: 40px;
   color: #777;
 }
+
 footer a {
   color: #555;
   text-decoration: none;
   margin: 0 10px;
 }
+
+/* === FORM STYLES (optional) === */
 form {
   background: #fff;
   padding: 20px;
@@ -84,23 +133,93 @@ form {
   margin: auto;
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
+
 label {
   display: block;
   margin-bottom: 10px;
 }
+
 input[type="text"], textarea {
   width: 100%;
   padding: 8px;
   margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
 }
-button {
-  padding: 10px 20px;
+
+.carousel-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  background: rgba(255,255,255,0.8);
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  padding: 0 10px;
+  border-radius: 50%;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+.carousel-btn.left {
+  left: 0;
+}
+
+.carousel-btn.right {
+  right: 0;
+}
+
+#filter-panel {
+  display: none;
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.4s ease;
+}
+
+#filter-panel.show {
+  display: block;
+  max-height: 500px; /* adjust as needed */
+}
+.filter-toggle-btn {
   background: #0077cc;
   color: #fff;
   border: none;
-  border-radius: 5px;
+  padding: 10px 18px;
+  border-radius: 25px;
+  font-size: 1rem;
   cursor: pointer;
+  transition: background 0.3s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 15px;
 }
-button:hover {
+
+.filter-toggle-btn:hover {
   background: #005fa3;
+}
+
+#filters h3 {
+  margin-top: 20px;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+#filters label {
+  display: inline-block;
+  margin: 5px 10px 10px 0;
+  font-size: 0.9rem;
+  color: #444;
+}
+
+#filters input[type="number"] {
+  width: 60px;
+  padding: 4px 6px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  margin-left: 5px;
 }

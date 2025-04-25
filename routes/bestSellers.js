@@ -9,15 +9,16 @@ router.get('/', (req, res) => {
       g.title,
       g.Description,
       g.imageURL,
-      g.minplayers,
-      g.maxplayers,
-      g.minplaytime,
-      g.maxplaytime,
+      COUNT(r.gameid) AS rent_count,
       GROUP_CONCAT(DISTINCT cn.CategoryName) AS categories
     FROM game g
+    JOIN rent r ON g.gameid = r.gameid
     LEFT JOIN Categorized cz ON g.gameid = cz.gameid
     LEFT JOIN categorieName cn ON cz.categorieId = cn.categorieId
+    WHERE r.status = 'returned'
     GROUP BY g.gameid
+    ORDER BY rent_count DESC
+    LIMIT 10
   `;
 
   db.query(query, (err, results) => {
@@ -27,14 +28,7 @@ router.get('/', (req, res) => {
     }
 
     const games = results.map(row => ({
-      gameid: row.gameid,
-      title: row.title,
-      Description: row.Description,
-      imageURL: row.imageURL,
-      minPlayers: parseInt(row.minplayers),
-      maxPlayers: parseInt(row.maxplayers),
-      minTime: parseInt(row.minplaytime),
-      maxTime: parseInt(row.maxplaytime),
+      ...row,
       categories: row.categories ? row.categories.split(',') : []
     }));
 

@@ -5,21 +5,54 @@
   <title>jeu</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="favicon.ico" />
 </head>
 <body>
   <header>
-    <div class="logo">PlayRent</div>
-    <input type="text" placeholder="Search games..." />
+    <div class="logo">jeu</div>
+    <input type="text" id="search-input" placeholder="Search games..." />
     <nav>
       <a href="#">Login</a>
       <a href="#">Register</a>
     </nav>
   </header>
 
-  <section id="featured">
-    <h2>Featured Games</h2>
-    <div id="game-cards" class="grid"></div>
+
+  <section id="featured" class="carousel-section">
+    <h2 id="featured-title">Featured Games</h2>
+    <section id="filters" >
+      <h3 id="toggle-filters" style="cursor: pointer;">▼ Filter by Category</h3>
+    
+      <div id="filter-content" style="display: none;">
+        <div id="category-filters" class="filters-grid"></div>
+    
+        <h3>Filter by Players</h3>
+        <label>Min: <input type="number" id="min-players" value="1" /></label>
+        <label>Max: <input type="number" id="max-players" value="8" /></label>
+    
+        <h3>Filter by Game Time (min)</h3>
+        <label>Min: <input type="number" id="min-duration" value="0" /></label>
+        <label>Max: <input type="number" id="max-duration" value="180" /></label>
+      </div>
+    </section>
+    <div class="carousel-wrapper">
+      <button class="carousel-btn left" id="left-btn">&#8249;</button>
+      <div id="featured-carousel" class="carousel"></div>
+      <button class="carousel-btn right" id="right-btn">&#8250;</button>
+    </div>
   </section>
+  
+  
+  <section id="bestsellers" class="carousel-section">
+    <h2>Best Sellers</h2>
+    <div class="carousel-wrapper">
+      <button class="carousel-btn left" id="bestsellers-left">&#8249;</button>
+      <div id="bestsellers-carousel" class="carousel"></div>
+      <button class="carousel-btn right" id="bestsellers-right">&#8250;</button>
+    </div>
+  </section>
+  
+
 
   <footer>
     <p>© 2025 jeu. All Rights Reserved.</p>
