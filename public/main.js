@@ -115,13 +115,18 @@ function renderGames(games) {
       <h3>${game.title}</h3>
       <p>${game.Description}</p>
     `;
+    // ← make the whole card clickable:
+    card.style.cursor = 'pointer';
+    card.addEventListener('click', () => {
+      window.location.href = `game.html?id=${encodeURIComponent(game.gameid)}`;
+    });
     container.appendChild(card);
   });
+  
 
   setupCarouselButtons('featured-carousel', 'left-btn', 'right-btn');
 }
 
-// === GENERIC CAROUSEL RENDERING ===
 function renderCarousel(containerId, games) {
   const container = document.getElementById(containerId);
   container.innerHTML = '';
@@ -134,6 +139,10 @@ function renderCarousel(containerId, games) {
       <h3>${game.title}</h3>
       <p>${game.Description}</p>
     `;
+    card.style.cursor = 'pointer';
+    card.addEventListener('click', () => {
+      window.location.href = `game.html?id=${encodeURIComponent(game.gameid)}`;
+    });
     container.appendChild(card);
   });
 }
