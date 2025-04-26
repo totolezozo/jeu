@@ -11,14 +11,22 @@ fetch('http://localhost:3000/api/games')
     allGames = games;
     renderCategoryFilters(games);
     renderGames(games);
-
-    // Hook up all filters
+  
+    // Hook up filters
     ['min-players', 'max-players', 'min-duration', 'max-duration'].forEach(id => {
       document.getElementById(id).addEventListener('input', filterAndRender);
     });
-
     document.getElementById('search-input').addEventListener('input', filterAndRender);
+  
+    // 🔥 Render Most Recent Games
+    const mostRecentGames = [...games]
+      .sort((a, b) => b.yearOfPublication - a.yearOfPublication) // newest first
+      .slice(0, 10); // take only top 10 newest
+  
+    renderCarousel('mostrecent-carousel', mostRecentGames);
+    setupCarouselButtons('mostrecent-carousel', 'mostrecent-left', 'mostrecent-right');
   })
+  
   .catch(err => console.error('Fetch error:', err));
 
 // === FETCH BEST SELLERS ===

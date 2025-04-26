@@ -9,6 +9,7 @@ router.get('/', (req, res) => {
       g.title,
       g.Description,
       g.imageURL,
+      g.yearOfPublication,  -- 🆕 add this
       g.minplayers,
       g.maxplayers,
       g.minplaytime,
@@ -31,6 +32,7 @@ router.get('/', (req, res) => {
       title: row.title,
       Description: row.Description,
       imageURL: row.imageURL,
+      yearOfPublication: parseInt(row.yearOfPublication), // 🆕 map it
       minPlayers: parseInt(row.minplayers),
       maxPlayers: parseInt(row.maxplayers),
       minTime: parseInt(row.minplaytime),
@@ -41,5 +43,6 @@ router.get('/', (req, res) => {
     res.json(games);
   });
 });
+
 
 module.exports = router;

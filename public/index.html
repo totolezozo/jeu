@@ -25,15 +25,28 @@
     
       <div id="filter-content" style="display: none;">
         <div id="category-filters" class="filters-grid"></div>
-    
+      
         <h3>Filter by Players</h3>
-        <label>Min: <input type="number" id="min-players" value="1" /></label>
-        <label>Max: <input type="number" id="max-players" value="8" /></label>
-    
+        <label>
+          Min: <input type="range" id="min-players" min="1" max="20" value="1" oninput="minPlayersValue.textContent = this.value" />
+          <span id="minPlayersValue">1</span>
+        </label>
+        <label>
+          Max: <input type="range" id="max-players" min="1" max="20" value="8" oninput="maxPlayersValue.textContent = this.value" />
+          <span id="maxPlayersValue">8</span>
+        </label>
+      
         <h3>Filter by Game Time (min)</h3>
-        <label>Min: <input type="number" id="min-duration" value="0" /></label>
-        <label>Max: <input type="number" id="max-duration" value="180" /></label>
+        <label>
+          Min: <input type="range" id="min-duration" min="0" max="300" value="0" oninput="minDurationValue.textContent = this.value" />
+          <span id="minDurationValue">0</span>
+        </label>
+        <label>
+          Max: <input type="range" id="max-duration" min="0" max="300" value="180" oninput="maxDurationValue.textContent = this.value" />
+          <span id="maxDurationValue">180</span>
+        </label>
       </div>
+      
     </section>
     <div class="carousel-wrapper">
       <button class="carousel-btn left" id="left-btn">&#8249;</button>
@@ -52,7 +65,15 @@
     </div>
   </section>
   
-
+  <section id="mostrecent" class="carousel-section">
+    <h2>Most Recent Games</h2>
+    <div class="carousel-wrapper">
+      <button class="carousel-btn left" id="mostrecent-left">&#8249;</button>
+      <div id="mostrecent-carousel" class="carousel"></div>
+      <button class="carousel-btn right" id="mostrecent-right">&#8250;</button>
+    </div>
+  </section>
+  
 
   <footer>
     <p>© 2025 jeu. All Rights Reserved.</p>
