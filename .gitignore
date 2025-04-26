@@ -1,0 +1,25 @@
+# dependencies
+node_modules/
+
+# environment files
+.env
+
+# logs
+logs/
+*.log
+npm-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# editor directories/files
+.vscode/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# build output (if any)
+dist/
+build/
