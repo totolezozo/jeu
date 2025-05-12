@@ -1,1 +1,48 @@
-<!-- Game details page -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Game Detail</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <div class="logo">jeu</div>
+  <nav id="main-nav">
+    <!-- filled in by auth-status.js -->
+  </nav>
+</header>
+
+<main class="game-detail-container">
+  <!-- ← BACK BUTTON -->
+  <button class="back-btn" onclick="history.back()">← Back</button>
+
+  <div class="game-image-section">
+    <img id="game-image" src="" alt="Game Image">
+  </div>
+  <div class="game-info-section">
+    <h1 id="game-title"></h1>
+    <p id="game-description"></p>
+
+    <div class="rental-options">
+      <h2>Rental Options</h2>
+      <ul>
+        <li>1 Week - $5.99</li>
+        <li>2 Weeks - $8.99</li>
+        <li>1 Month - $14.99</li>
+      </ul>
+      <button class="rent-btn">Rent Now</button>
+    </div>
+
+    <div class="user-reviews">
+      <h2>User Reviews</h2>
+      <div id="reviews-container"></div>
+    </div>
+  </div>
+</main>
+
+<footer>…</footer>
+<script src="auth-status.js"></script>
+<script src="game.js"></script>
+</body>
+</html>

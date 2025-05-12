@@ -8,14 +8,19 @@
   <link rel="icon" href="favicon.ico" />
 </head>
 <body>
-  <header>
-    <div class="logo">jeu</div>
-    <input type="text" id="search-input" placeholder="Search games..." />
-    <nav>
-      <a href="#">Login</a>
-      <a href="#">Register</a>
-    </nav>
-  </header>
+<!-- index.html -->
+<header>
+  <div class="logo">jeu</div>
+  <input
+    type="text"
+    id="search-input"
+    placeholder="Search games..."
+  />
+  <nav id="main-nav">
+    <!-- filled in by auth-status.js -->
+  </nav>
+</header>
+
 
 
   <section id="featured" class="carousel-section">
@@ -79,7 +84,7 @@
     <p>© 2025 jeu. All Rights Reserved.</p>
     <div><a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a> | <a href="#">Contact Us</a></div>
   </footer>
-
+  <script src="auth-status.js"></script>
   <script src="main.js"></script>
 </body>
 </html>

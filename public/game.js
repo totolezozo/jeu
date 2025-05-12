@@ -61,3 +61,49 @@ function getGameIdFromUrl() {
     console.error('No game ID provided in URL.');
   }
   
+document.querySelector('.rent-btn').addEventListener('click', async () => {
+  const durationDays = 7; // 1 week rental for now
+  const today = new Date();
+  const rentalDate = today.toISOString().split('T')[0];
+  const dueDateObj = new Date(today);
+  dueDateObj.setDate(today.getDate() + durationDays);
+  const dueDate = dueDateObj.toISOString().split('T')[0];
+
+  try {
+    // Fetch current user from session
+    const sessionRes = await fetch('http://localhost:3000/api/auth/status', {
+      credentials: 'include'
+    });
+    const sessionData = await sessionRes.json();
+    if (!sessionData.loggedIn) {
+      alert('You must be logged in to rent a game.');
+      return;
+    }
+
+    const userId = sessionData.user.UserId;
+
+    // Now send rental request
+    const res = await fetch('http://localhost:3000/api/rent', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'include',
+      body: JSON.stringify({
+        gameid: gameId,
+        userId: userId,
+        rentalDate: rentalDate,
+        DueDate: dueDate
+      })
+    });
+
+    const result = await res.json();
+    if (!res.ok) {
+      alert(result.error || 'Failed to rent game.');
+      return;
+    }
+
+    alert('Game rented successfully!');
+  } catch (err) {
+    console.error('Error during rental:', err);
+    alert('Something went wrong.');
+  }
+});
