@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin - Return Games</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="logo">Admin Panel</div>
+  </header>
+
+  <main class="admin-container">
+    <h1>Currently Rented Games</h1>
+    <table id="rental-table">
+      <thead>
+        <tr>
+          <th>User</th>
+          <th>Game</th>
+          <th>Rented On</th>
+          <th>Due</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Filled by JS -->
+      </tbody>
+    </table>
+  </main>
+  <section class="add-game-section">
+  <h2>Add New Game</h2>
+  <form id="add-game-form">
+    <div class="form-group"><label>Game ID: <input type="text" name="gameid" required></label></div>
+    <div class="form-group"><label>Title: <input type="text" name="title" required></label></div>
+    <div class="form-group"><label>Description: <textarea name="Description" required></textarea></label></div>
+    <div class="form-group"><label>Age Range: <input type="number" name="AgeRange" required></label></div>
+    <div class="form-group"><label>Stock: <input type="number" name="stock" required></label></div>
+    <div class="form-group"><label>Image URL: <input type="text" name="imageURL"></label></div>
+    <div class="form-group"><label>Publication Year: <input type="date" name="yearOfPublication"></label></div>
+    <div class="form-group"><label>Min Players: <input type="number" name="minplayers"></label></div>
+    <div class="form-group"><label>Max Players: <input type="text" name="maxplayers"></label></div>
+    <div class="form-group"><label>Min Playtime: <input type="number" name="minplaytime"></label></div>
+    <div class="form-group"><label>Max Playtime: <input type="text" name="maxplaytime"></label></div>
+    <button type="submit">Add Game</button>
+    </form>
+    </section>
+<section class="edit-game-section">
+  <h2>Modify Existing Game</h2>
+
+  <div class="form-group">
+    <label>Enter Game Title:
+      <input type="text" id="search-title" placeholder="Exact title..." />
+    </label>
+    <button id="load-game-btn">Load Game</button>
+  </div>
+
+  <form id="edit-game-form" class="hidden">
+    <input type="hidden" name="gameid" />
+    <div class="form-group"><label>Title: <input type="text" name="title" /></label></div>
+    <div class="form-group"><label>Description: <textarea name="Description"></textarea></label></div>
+    <div class="form-group"><label>Age Range: <input type="number" name="AgeRange" /></label></div>
+    <div class="form-group"><label>Stock: <input type="number" name="stock" /></label></div>
+    <div class="form-group"><label>Image URL: <input type="text" name="imageURL" /></label></div>
+    <div class="form-group"><label>Year of Publication: <input type="date" name="yearOfPublication" /></label></div>
+    <div class="form-group"><label>Min Players: <input type="number" name="minplayers" /></label></div>
+    <div class="form-group"><label>Max Players: <input type="text" name="maxplayers" /></label></div>
+    <div class="form-group"><label>Min Playtime: <input type="number" name="minplaytime" /></label></div>
+    <div class="form-group"><label>Max Playtime: <input type="text" name="maxplaytime" /></label></div>
+    <button type="submit">Save Changes</button>
+  </form>
+</section>
+
+  <script src="admin.js"></script>
+</body>
+</html>
