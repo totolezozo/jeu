@@ -95,4 +95,62 @@ router.get('/:id', (req, res) => {
   });
 });
 
+router.post('/', (req, res) => {
+  const {
+    gameid, title, Description, AgeRange, stock, imageURL,
+    yearOfPublication, minplayers, maxplayers, minplaytime, maxplaytime
+  } = req.body;
+
+  const query = `
+    INSERT INTO game (gameid, title, Description, AgeRange, stock, imageURL, yearOfPublication, minplayers, maxplayers, minplaytime, maxplaytime)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+  `;
+
+  db.query(query, [
+    gameid, title, Description, AgeRange, stock, imageURL,
+    yearOfPublication, minplayers, maxplayers, minplaytime, maxplaytime
+  ], (err, result) => {
+    if (err) {
+      console.error('[ADD GAME] DB Error:', err);
+      return res.status(500).json({ error: 'Database error', details: err.message });
+    }
+
+    res.status(201).json({ message: 'Game created successfully' });
+  });
+});
+
+router.get('/title/:title', (req, res) => {
+  const { title } = req.params;
+  const query = 'SELECT * FROM game WHERE title = ?';
+
+  db.query(query, [title], (err, results) => {
+    if (err) return res.status(500).json({ error: err.message });
+    if (results.length === 0) return res.status(404).json({ error: 'Game not found' });
+    res.json(results[0]);
+  });
+});
+router.put('/:gameid', (req, res) => {
+  const { gameid } = req.params;
+  const {
+    title, Description, AgeRange, stock, imageURL,
+    yearOfPublication, minplayers, maxplayers, minplaytime, maxplaytime
+  } = req.body;
+
+  const query = `
+    UPDATE game SET
+      title = ?, Description = ?, AgeRange = ?, stock = ?, imageURL = ?,
+      yearOfPublication = ?, minplayers = ?, maxplayers = ?, minplaytime = ?, maxplaytime = ?
+    WHERE gameid = ?
+  `;
+
+  db.query(query, [
+    title, Description, AgeRange, stock, imageURL,
+    yearOfPublication, minplayers, maxplayers, minplaytime, maxplaytime, gameid
+  ], (err, result) => {
+    if (err) return res.status(500).json({ error: err.message });
+    res.json({ message: 'Game updated' });
+  });
+});
+
 module.exports = router;
+

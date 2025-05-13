@@ -44,7 +44,7 @@ router.get('/user/:userId', (req, res) => {
 
 router.post('/', (req, res) => {
   const { gameid, userId, rentalDate, DueDate } = req.body;
-  const status = 'rented';
+  const status = 'ongoing';
 
   console.log('[RENT] Incoming rental:', { gameid, userId, rentalDate, DueDate });
 
@@ -77,4 +77,25 @@ router.put('/:gameid/status', (req, res) => {
   });
 });
 
+router.post('/return', (req, res) => {
+const { userId, gameId, rentalDate } = req.body;
+
+console.log('[RETURN] Attempting return for:', { userId, gameId, rentalDate });
+
+const query = 'CALL ReturnGame(?, ?, ?)';
+db.query(query, [userId, gameId, rentalDate], (err, result) => {
+  if (err) {
+    console.error('[RETURN] Error:', err);
+    return res.status(500).json({ error: 'Return failed', details: err.message });
+  }
+
+  console.log('[RETURN] Success');
+  res.json({ message: 'Game returned successfully' });
+});
+});
+
+
+
 module.exports = router;
+
+
