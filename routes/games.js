@@ -152,5 +152,29 @@ router.put('/:gameid', (req, res) => {
   });
 });
 
+router.get('/:gameid/average-rating', (req, res) => {
+  const { gameid } = req.params;
+
+  const query = `
+    SELECT average_rating FROM game_average_rating
+    WHERE gameid = ?
+  `;
+
+  db.query(query, [gameid], (err, results) => {
+    if (err) {
+      console.error('[AVG RATING] Error:', err);
+      return res.status(500).json({ error: 'DB error', details: err.message });
+    }
+
+    if (results.length === 0) {
+      return res.json({ averageRating: null });
+    }
+
+    res.json(results[0]);
+  });
+});
+
+
 module.exports = router;
+
 
