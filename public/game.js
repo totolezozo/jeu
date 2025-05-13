@@ -57,6 +57,7 @@ function getGameIdFromUrl() {
   if (gameId) {
     fetchGameDetails(gameId);
     fetchGameReviews(gameId);
+    fetchAverageRating(gameId);
   } else {
     console.error('No game ID provided in URL.');
   }
@@ -107,3 +108,17 @@ document.querySelector('.rent-btn').addEventListener('click', async () => {
     alert('Something went wrong.');
   }
 });
+
+async function fetchAverageRating(gameId) {
+  try {
+    const res = await fetch(`http://localhost:3000/api/games/${gameId}/average-rating`);
+    const data = await res.json();
+    const avgText = data.average_rating !== null
+      ? `Average Rating: ${parseFloat(data.average_rating).toFixed(1)} / 5`
+      : 'No ratings yet';
+
+    document.getElementById('game-average-rating').textContent = avgText;
+  } catch (err) {
+    console.error('Error fetching average rating:', err);
+  }
+}
